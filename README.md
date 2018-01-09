@@ -1,6 +1,8 @@
 # OnetcMonkey
 玩客猴辅助工具，包含全网数据查询、猴子信息查询、掘金计算器、生育计算器、投食计算器、自动喂养、自动修炼等功能
 
+软件网址：http://www.onetc.info/wkmonkey/ruan-jian-yi-jing-kai-yuan-huan-ying-start 
+
 ## 软件界面如下：
 ![snipaste_20180107_011310.jpg](http://p2.cdn.img9.top/ipfs/QmaSKHh7SCt6TaLcxinJ3Q1174Cg8z3FV3qmgwatJSf5sg?2.jpg "snipaste_20180107_011310.jpg")
 
