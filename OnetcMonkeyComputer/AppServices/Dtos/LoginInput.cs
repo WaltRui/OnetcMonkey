@@ -14,7 +14,8 @@ namespace OnetcMonkeyComputer.AppServices.Dtos
 
         public void EnCode(string wallet,string name)
         {
-            Sign = HnbcUserSignService.GetSign(wallet, name);           
+            Sign = HnbcUserSignService.GetSign(wallet, name);    
+            
         }
     }
 }
