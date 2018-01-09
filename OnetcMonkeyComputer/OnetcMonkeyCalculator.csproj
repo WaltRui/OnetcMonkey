@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{78935752-090D-4E63-BD90-7EFBDC60E018}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>OnetcMonkeyComputer</RootNamespace>
+    <AssemblyName>OnetcMonkeyCalculator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>mine.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gma.System.MouseKeyHook, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MouseKeyHook.5.4.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OnetcMonkeyEncrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\OnetcMonkeyEncrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebKit.Interop, Version=533.0.0.0, Culture=neutral, PublicKeyToken=b967213f6d29a3be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>dlls\WebKit.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="WebKitBrowser, Version=0.5.0.0, Culture=neutral, PublicKeyToken=b967213f6d29a3be, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\WebKitBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="ZedGraph, Version=5.1.7.430, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZedGraph.5.1.7\lib\net35-Client\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppConst.cs" />
+    <Compile Include="AppServices\AppService.cs" />
+    <Compile Include="AppServices\Dtos\AppInfoDto.cs" />
+    <Compile Include="AppServices\Dtos\AppType.cs" />
+    <Compile Include="AppServices\Dtos\HnbcResponseDto.cs" />
+    <Compile Include="AppServices\Dtos\LoginInput.cs" />
+    <Compile Include="AppServices\Dtos\LoginResult.cs" />
+    <Compile Include="AppServices\IAppService.cs" />
+    <Compile Include="Config\AppInfo.cs" />
+    <Compile Include="Config\UserConfig.cs" />
+    <Compile Include="Forms\About\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\About\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Announce\AnnounceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Announce\AnnounceForm.Designer.cs">
+      <DependentUpon>AnnounceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AutoFeed\AutoFeedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutoFeed\AutoFeedForm.Designer.cs">
+      <DependentUpon>AutoFeedForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AutoFeed\AutoFeedHelper.cs" />
+    <Compile Include="Forms\AutoFeed\FeedFangAnForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutoFeed\FeedFangAnForm.Designer.cs">
+      <DependentUpon>FeedFangAnForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AutoFeed\Libs\AppHotKey.cs" />
+    <Compile Include="Forms\AutoFeed\Libs\KeyCodeTools.cs" />
+    <Compile Include="Forms\AutoFeed\Libs\Win32ApiTools.cs" />
+    <Compile Include="Forms\AutoXiulian\AutoXiulianForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutoXiulian\AutoXiulianForm.Designer.cs">
+      <DependentUpon>AutoXiulianForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AutoXiulian\GongfaPeizhi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AutoXiulian\GongfaPeizhi.Designer.cs">
+      <DependentUpon>GongfaPeizhi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Calculators\BearCalculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Calculators\BearCalculator.Designer.cs">
+      <DependentUpon>BearCalculator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Calculators\FeedCalculatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Calculators\FeedCalculatorForm.Designer.cs">
+      <DependentUpon>FeedCalculatorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Calculators\GenerationCalculatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Calculators\GenerationCalculatorForm.Designer.cs">
+      <DependentUpon>GenerationCalculatorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Calculators\JueJinCalculatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Calculators\JueJinCalculatorForm.Designer.cs">
+      <DependentUpon>JueJinCalculatorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\AppConfig.cs" />
+    <Compile Include="Config\ConfigService.cs" />
+    <Compile Include="Config\IConfigService.cs" />
+    <Compile Include="Eggs\AvatarEggs.cs" />
+    <Compile Include="Forms\Donate\DonateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Donate\DonateForm.Designer.cs">
+      <DependentUpon>DonateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HomePage\HomePageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HomePage\HomePageForm.Designer.cs">
+      <DependentUpon>HomePageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Main\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Main\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MonkeyDetail\MonkeyDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MonkeyDetail\MonkeyDetailForm.Designer.cs">
+      <DependentUpon>MonkeyDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Overview\OverViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Overview\OverViewForm.Designer.cs">
+      <DependentUpon>OverViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Setting\SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Setting\SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Search\SearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Search\SearchForm.Designer.cs">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Dtos\FeedPageDto.cs" />
+    <Compile Include="Services\Dtos\MakeMoneyPageDto.cs" />
+    <Compile Include="Services\Dtos\MiguanUserInfoDto.cs" />
+    <Compile Include="Services\Dtos\MonkeyInfoDto.cs" />
+    <Compile Include="Services\Dtos\MyMonkey4FeedDto.cs" />
+    <Compile Include="Services\Dtos\MyMonkey4XiuLianDto.cs" />
+    <Compile Include="Services\Dtos\StudyRecord.cs" />
+    <Compile Include="Services\HnbcServices\Dtos\NewsDto.cs" />
+    <Compile Include="Services\HnbcServices\Dtos\OverViewDataDto.cs" />
+    <Compile Include="Services\HnbcServices\HnbcService.cs" />
+    <Compile Include="Services\HnbcServices\IHnbcService.cs" />
+    <Compile Include="Services\IMonkeyService.cs" />
+    <Compile Include="Services\MonkeyService.cs" />
+    <Compile Include="Services\RequestDtos\RequestListMonkeys4AutoTradeDto.cs" />
+    <Compile Include="Services\RequestDtos\RequestListMonkeysDto.cs" />
+    <Compile Include="Services\RequestDtos\RequestMonkeyWithUserDetailDto.cs" />
+    <Compile Include="Services\RequestDtos\RequestResultDto.cs" />
+    <Compile Include="Tools\DateTimeConverterTool.cs" />
+    <Compile Include="Tools\Encrypt\Base64Helper.cs" />
+    <Compile Include="Tools\Encrypt\HMACHelper.cs" />
+    <Compile Include="Tools\FileHelper.cs" />
+    <Compile Include="Tools\JsonHelper.cs" />
+    <Compile Include="Tools\StringHelper.cs" />
+    <EmbeddedResource Include="Forms\About\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Announce\AnnounceForm.resx">
+      <DependentUpon>AnnounceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AutoFeed\AutoFeedForm.resx">
+      <DependentUpon>AutoFeedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AutoFeed\FeedFangAnForm.resx">
+      <DependentUpon>FeedFangAnForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AutoXiulian\AutoXiulianForm.resx">
+      <DependentUpon>AutoXiulianForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AutoXiulian\GongfaPeizhi.resx">
+      <DependentUpon>GongfaPeizhi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Calculators\BearCalculator.resx">
+      <DependentUpon>BearCalculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Calculators\FeedCalculatorForm.resx">
+      <DependentUpon>FeedCalculatorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Calculators\GenerationCalculatorForm.resx">
+      <DependentUpon>GenerationCalculatorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Calculators\JueJinCalculatorForm.resx">
+      <DependentUpon>JueJinCalculatorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Donate\DonateForm.resx">
+      <DependentUpon>DonateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HomePage\HomePageForm.resx">
+      <DependentUpon>HomePageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Main\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MonkeyDetail\MonkeyDetailForm.resx">
+      <DependentUpon>MonkeyDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Overview\OverViewForm.resx">
+      <DependentUpon>OverViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Setting\SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Search\SearchForm.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License-LGPL.txt" />
+    <Content Include="mine.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
