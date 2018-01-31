@@ -193,12 +193,38 @@ namespace OnetcMonkeyComputer.Forms.Main
 
         private void 自动喂食ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetForm(autoFeedForm.Value);            
+            SetForm(autoFeedForm.Value);
         }
 
         private void 自动修炼ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetForm(autoXiulianForm.Value);            
+        }
+
+        private void 检查更新ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IAppService appservice = new AppService();
+
+                var app = appservice.GetAppInfo();
+                 
+                if(app.newestVersion >AppInfo.VersionCode)
+                {
+                    if (MessageBox.Show($"发现新版本，是否前往下载？", "版本更新", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        Process.Start(app.url);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("当前为最新版本！");
+                }
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("版本检查失败，请稍后再试！");
+            }
         }
     }
 }

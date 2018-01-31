@@ -40,5 +40,6 @@ namespace OnetcMonkeyComputer
 
             return Math.Pow(1 + DecreaseCoefficient, generation);
         }
+        
     }
 }

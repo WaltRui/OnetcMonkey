@@ -34,7 +34,8 @@ namespace OnetcMonkeyComputer.Forms.AutoXiulian
         {
             InitializeComponent();
             _configService = new ConfigService();
-            _monkeyService = new MonkeyService();
+            var config = _configService.ReadConfig();
+            _monkeyService = new MonkeyService(config.BaseApiUrl, config.BaseUrl);
         }
 
         private void AutoXiulianForm_Load(object sender, EventArgs e)
@@ -219,12 +220,12 @@ namespace OnetcMonkeyComputer.Forms.AutoXiulian
                   .ToList();
                 foreach (var m in feedmonkeys)
                 {
-                    _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--开始喂养猴子#{m.Id}");
+                    _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--开始修炼猴子#{m.Id}");
 
                     FeedOne(m, input.wallet, input.pwd);
                     if (ForseStopFeed)
                     {
-                        _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--已停止喂养");
+                        _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--已停止修炼");
                         MessageBox.Show("已停止！");
                         return;
                     }
@@ -245,13 +246,13 @@ namespace OnetcMonkeyComputer.Forms.AutoXiulian
             {
                 if (ForseStopFeed)
                 {
-                    _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--用户取消了自动喂养");
+                    _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--用户取消了自动修炼");
                     return;
                 }
 
-                _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--正在第{i}次喂养猴子#{m.Id},投食{c} wkc");
+                _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--正在第{i}次修炼猴子#{m.Id},投食{c} wkc");
                 AutoFeedHelper.FeedOneTime(wallet, c, pwd);
-                _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--第{i}次喂养猴子#{m.Id},投食{c} wkc 完成");
+                _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--第{i}次修炼猴子#{m.Id},投食{c} wkc 完成");
                 i++;
             }
         }

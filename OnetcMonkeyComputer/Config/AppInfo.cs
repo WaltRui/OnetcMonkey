@@ -10,12 +10,17 @@ namespace OnetcMonkeyComputer.Config
     {
         public static string AppName = "hnbc.onetc.tools.wkh";
 
-        public static string AppShowName = "海纳百川 玩客猴辅助工具 ";
-        public static string Author = "onetc.info";
+        public static string AppShowName = "海纳百川 玩客猴辅助工具 <52pojie.cn> ";
+        public static string Author = "gana";
 
-        public static string AppVersion = "3.6.2";
+        public static string AppVersion = "4.0";
 
-        public static int VersionCode = 7;
-        
+        public static int VersionCode = 14;
+
+
+        public static string baseApiUrl = "http://api.wkc.monkey.plus";
+
+        public static string baseUrl = "http://wkc.monkey.plus";
+        public static string serverTag = "";
     }
 }

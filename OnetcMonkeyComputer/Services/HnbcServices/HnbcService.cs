@@ -19,8 +19,10 @@ namespace OnetcMonkeyComputer.Services.HnbcServices
     {
         private IConfigService _configService;
         private AppConfig config;
-        public HnbcService()
+        private string _hnbcServerTag;
+        public HnbcService(string hnbcServerTag)
         {
+            _hnbcServerTag = hnbcServerTag??AppInfo.serverTag;
             _configService = new ConfigService();
             config = _configService.ReadConfig();
         }
@@ -52,13 +54,13 @@ namespace OnetcMonkeyComputer.Services.HnbcServices
         public List<OverViewDataDto> GetOverViews(string day)
         {
             string result = string.Empty;
-            string url = AppConst.GetOverViewDataUrl;
+            string url = AppConst.GetOverViewDataUrl.TrimEnd('/')+"/"+ _hnbcServerTag;
+            url = url.TrimEnd('/');
 
             HttpWebRequest wbRequest = (HttpWebRequest)WebRequest.Create(url);
             wbRequest.Method = "GET";
             wbRequest.Headers.Add("authorization", "Bearer " + config.ServerToken);
-
-
+            
             HttpWebResponse wbResponse = (HttpWebResponse)wbRequest.GetResponse();
             using (Stream responseStream = wbResponse.GetResponseStream())
             {
@@ -70,8 +72,7 @@ namespace OnetcMonkeyComputer.Services.HnbcServices
             HnbcResponseDto<List< OverViewDataDto >> output = JsonHelper.JsonToObject<HnbcResponseDto<List<OverViewDataDto>>>(result);
             if (!output.Success)
                 throw new Exception(output.Error);
-
-
+            
             return output.Result;
             
         }

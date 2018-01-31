@@ -24,8 +24,10 @@ namespace OnetcMonkeyComputer.Forms.MonkeyDetail
         public MonkeyDetailForm()
         {
             InitializeComponent();
-            _monkeyService = new MonkeyService();
+
             _configService = new ConfigService();
+            var config =_configService.ReadConfig();
+            _monkeyService = new MonkeyService(config.BaseApiUrl, config.BaseUrl);
         }
 
         private void button_get_detail_Click(object sender, EventArgs e)
@@ -42,7 +44,7 @@ namespace OnetcMonkeyComputer.Forms.MonkeyDetail
                 detail.monkey.SetBearCd();
                 var monkey = detail.monkey;
 
-                webBrowser1.Navigate(monkey.facade, "_self", null, $"Referer:http://h.miguan.in/monkey/{monkey.id}");
+                webKitBrowser1.Navigate(monkey.facade);
                 //webBrowser1.Navigate(monkey.facade);
 
                 label_generation_weight.Text = $"{monkey.generation} 代 - {monkey.weight} kg";

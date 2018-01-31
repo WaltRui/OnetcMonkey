@@ -61,11 +61,6 @@
             0,
             0,
             0});
-            this.numericUpDown_juejin.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numericUpDown_juejin.Name = "numericUpDown_juejin";
             this.numericUpDown_juejin.Size = new System.Drawing.Size(91, 21);
             this.numericUpDown_juejin.TabIndex = 3;
@@ -152,11 +147,6 @@
             0,
             0,
             0});
-            this.numericUpDown_tizhong.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numericUpDown_tizhong.Name = "numericUpDown_tizhong";
             this.numericUpDown_tizhong.Size = new System.Drawing.Size(91, 21);
             this.numericUpDown_tizhong.TabIndex = 12;
@@ -189,11 +179,6 @@
             0,
             0,
             0});
-            this.numericUpDown_weiyang.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numericUpDown_weiyang.Name = "numericUpDown_weiyang";
             this.numericUpDown_weiyang.Size = new System.Drawing.Size(91, 21);
             this.numericUpDown_weiyang.TabIndex = 14;
@@ -212,7 +197,7 @@
             this.pictureBox1.TabIndex = 16;
             this.pictureBox1.TabStop = false;
             // 
-            // BearCD
+            // JueJinCalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -229,7 +214,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.numericUpDown_juejin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "BearCD";
+            this.Name = "JueJinCalculatorForm";
             this.Text = "生育冷却";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_juejin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_generation)).EndInit();

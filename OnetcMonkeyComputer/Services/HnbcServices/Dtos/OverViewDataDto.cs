@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,8 @@ namespace OnetcMonkeyComputer.Services.HnbcServices.Dtos
 {
     public class OverViewDataDto
     {
+        public string ServerTag { get; set; }
+
         public string Date { get; set; }
 
         public double Game { get; set; }
@@ -36,4 +40,5 @@ namespace OnetcMonkeyComputer.Services.HnbcServices.Dtos
 
         public DateTime CreationTime { get; set; }
     }
+     
 }

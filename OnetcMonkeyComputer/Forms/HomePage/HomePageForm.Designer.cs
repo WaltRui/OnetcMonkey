@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox_overview = new System.Windows.Forms.GroupBox();
+            this.label_other = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.webKitBrowser1 = new WebKit.WebKitBrowser();
             this.label_allScore = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -54,8 +56,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.zedGraphControl2 = new ZedGraph.ZedGraphControl();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
-            this.label_other = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.label_server = new System.Windows.Forms.Label();
             this.groupBox_overview.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -63,6 +64,7 @@
             // 
             // groupBox_overview
             // 
+            this.groupBox_overview.Controls.Add(this.label_server);
             this.groupBox_overview.Controls.Add(this.label_other);
             this.groupBox_overview.Controls.Add(this.label10);
             this.groupBox_overview.Controls.Add(this.webKitBrowser1);
@@ -89,6 +91,24 @@
             this.groupBox_overview.TabIndex = 0;
             this.groupBox_overview.TabStop = false;
             this.groupBox_overview.Text = "最新全网数据总览";
+            // 
+            // label_other
+            // 
+            this.label_other.AutoSize = true;
+            this.label_other.Location = new System.Drawing.Point(77, 280);
+            this.label_other.Name = "label_other";
+            this.label_other.Size = new System.Drawing.Size(11, 12);
+            this.label_other.TabIndex = 18;
+            this.label_other.Text = "0";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 280);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 12);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "其他金额：";
             // 
             // webKitBrowser1
             // 
@@ -148,7 +168,7 @@
             // label_pai
             // 
             this.label_pai.AutoSize = true;
-            this.label_pai.Location = new System.Drawing.Point(77, 233);
+            this.label_pai.Location = new System.Drawing.Point(77, 240);
             this.label_pai.Name = "label_pai";
             this.label_pai.Size = new System.Drawing.Size(11, 12);
             this.label_pai.TabIndex = 11;
@@ -157,7 +177,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 153);
+            this.label7.Location = new System.Drawing.Point(6, 160);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 12);
             this.label7.TabIndex = 10;
@@ -166,7 +186,7 @@
             // label_game
             // 
             this.label_game.AutoSize = true;
-            this.label_game.Location = new System.Drawing.Point(77, 193);
+            this.label_game.Location = new System.Drawing.Point(77, 200);
             this.label_game.Name = "label_game";
             this.label_game.Size = new System.Drawing.Size(11, 12);
             this.label_game.TabIndex = 9;
@@ -175,7 +195,7 @@
             // label_feed
             // 
             this.label_feed.AutoSize = true;
-            this.label_feed.Location = new System.Drawing.Point(77, 153);
+            this.label_feed.Location = new System.Drawing.Point(77, 160);
             this.label_feed.Name = "label_feed";
             this.label_feed.Size = new System.Drawing.Size(11, 12);
             this.label_feed.TabIndex = 8;
@@ -184,7 +204,7 @@
             // label_bear
             // 
             this.label_bear.AutoSize = true;
-            this.label_bear.Location = new System.Drawing.Point(77, 113);
+            this.label_bear.Location = new System.Drawing.Point(77, 120);
             this.label_bear.Name = "label_bear";
             this.label_bear.Size = new System.Drawing.Size(11, 12);
             this.label_bear.TabIndex = 7;
@@ -193,7 +213,7 @@
             // label_trade
             // 
             this.label_trade.AutoSize = true;
-            this.label_trade.Location = new System.Drawing.Point(77, 73);
+            this.label_trade.Location = new System.Drawing.Point(77, 80);
             this.label_trade.Name = "label_trade";
             this.label_trade.Size = new System.Drawing.Size(11, 12);
             this.label_trade.TabIndex = 6;
@@ -202,7 +222,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 233);
+            this.label6.Location = new System.Drawing.Point(6, 240);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 12);
             this.label6.TabIndex = 5;
@@ -211,7 +231,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 193);
+            this.label5.Location = new System.Drawing.Point(6, 200);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 4;
@@ -220,7 +240,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 113);
+            this.label4.Location = new System.Drawing.Point(6, 120);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 3;
@@ -229,7 +249,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 73);
+            this.label3.Location = new System.Drawing.Point(6, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 2;
@@ -328,23 +348,16 @@
             this.zedGraphControl1.TabIndex = 0;
             this.zedGraphControl1.UseExtendedPrintDialog = true;
             // 
-            // label_other
+            // label_server
             // 
-            this.label_other.AutoSize = true;
-            this.label_other.Location = new System.Drawing.Point(77, 273);
-            this.label_other.Name = "label_other";
-            this.label_other.Size = new System.Drawing.Size(11, 12);
-            this.label_other.TabIndex = 18;
-            this.label_other.Text = "0";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 273);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 12);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "其他金额：";
+            this.label_server.AutoSize = true;
+            this.label_server.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_server.ForeColor = System.Drawing.Color.Red;
+            this.label_server.Location = new System.Drawing.Point(6, 52);
+            this.label_server.Name = "label_server";
+            this.label_server.Size = new System.Drawing.Size(93, 16);
+            this.label_server.TabIndex = 19;
+            this.label_server.Text = "交易金额：";
             // 
             // HomePageForm
             // 
@@ -396,5 +409,6 @@
         private WebKit.WebKitBrowser webKitBrowser_officail;
         private System.Windows.Forms.Label label_other;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label_server;
     }
 }

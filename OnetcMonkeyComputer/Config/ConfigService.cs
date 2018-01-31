@@ -16,7 +16,7 @@ namespace OnetcMonkeyComputer.Config
         private string fileName = "appconfig.json";
         private string overviewDataFile = "overview.json";
         private string appconfigFile= "";
-
+        private string serverconfigFile = "servers.json";
         public ConfigService()
         {
             string exePath = System.Windows.Forms.Application.StartupPath;
@@ -100,6 +100,42 @@ namespace OnetcMonkeyComputer.Config
                 throw new Exception($"保存数据信息失败：{e.Message}");
             }
         }
+
+        public List<ServerInfo> ReadMonkeyServers()
+        {
+            List<ServerInfo> servers = new List<ServerInfo>();
+            try
+            {
+                if (!File.Exists(serverconfigFile))
+                {
+                    SaveMonkeyServers(servers);
+                    return servers;
+                }
+                var json_str = FileHelper.ReadFile(serverconfigFile);
+                servers = JsonHelper.JsonToObject<List<ServerInfo>>(json_str);
+                return servers;
+            }
+            catch (Exception e)
+            {
+                SaveMonkeyServers(servers);
+                return servers;
+            }
+        }
+        public void SaveMonkeyServers(List<ServerInfo> servers)
+        {
+            try
+            {
+                if (servers == null)
+                    return;
+                var json_string = JsonHelper.ObjectToJson(servers);
+                FileHelper.WriteFile(serverconfigFile, json_string);
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"保存配置信息失败：{e.Message}");
+            }
+        }
+
 
         public UserConfig GetUserConfig()
         {

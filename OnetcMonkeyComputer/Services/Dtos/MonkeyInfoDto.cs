@@ -16,6 +16,8 @@ namespace OnetcMonkeyComputer.Services.Dtos
 
         public double weight { get; set; }
 
+        public double yesterdayCoin { get; set; }
+
         public double grow { get; set; }
 
         public double? growIng { get; set; }

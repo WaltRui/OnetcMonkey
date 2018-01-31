@@ -21,7 +21,7 @@ namespace OnetcMonkeyComputer.Forms.About
         private void AboutForm_Load(object sender, EventArgs e)
         {
             label2.Text = $"软件版本：V{AppInfo.AppVersion}";
-            label3.Text = $"软件代码：{AppInfo.VersionCode}";
+            label3.Text = $"版本代码：{AppInfo.VersionCode}";
         }
     }
 }

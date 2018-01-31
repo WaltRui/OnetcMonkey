@@ -122,7 +122,7 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed.Libs
             bool isteshuzif = false;
             foreach (char c in str)
             {
-                if ((!char.IsLetter(c)) && (!char.IsNumber(c)) && c!='.')  //既不是字母又不是数字的就认为是特殊字符
+                if ((!char.IsLetter(c)) && (!char.IsNumber(c)) && c != '.')  //既不是字母又不是数字的就认为是特殊字符
                     isteshuzif = true;
             }
 
@@ -136,7 +136,8 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed.Libs
                     SetCaplock(islock);
                     PostMessage(handle, 256, k1, 1);
                 }
-            }else
+            }
+            else
             {
                 Clipboard.SetDataObject(str, true);
                 Thread.Sleep(500);
@@ -147,7 +148,7 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed.Libs
                 Thread.Sleep(500);
                 Clipboard.SetDataObject("", true);
             }
-           
+
         }
 
         private static void SetCaplock(bool isLock)

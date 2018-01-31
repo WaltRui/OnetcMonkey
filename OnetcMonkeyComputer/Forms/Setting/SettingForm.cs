@@ -17,8 +17,10 @@ namespace OnetcMonkeyComputer.Forms.Setting
     public partial class SettingForm : Form
     {
         public delegate void GetUserInfo(string token);
-        
 
+
+        IAppService _appService = new AppService();
+        IConfigService _configService = new ConfigService();
         public SettingForm()
         {
             InitializeComponent();
@@ -35,8 +37,6 @@ namespace OnetcMonkeyComputer.Forms.Setting
             }
 
             LoadAndSaveSetting(token);
-
-
         }
 
         private void LoadAndSaveSetting(string token)
@@ -46,9 +46,17 @@ namespace OnetcMonkeyComputer.Forms.Setting
 
         private void SaveSetting(string token)
         {
-            IMonkeyService _monkeyService = new MonkeyService();
-            IConfigService _configService = new ConfigService();
-            IAppService _appService = new AppService();
+            if(comboBox1.SelectedIndex<0)
+            {
+                MessageBox.Show("请选择服务器");
+                textBox_token.Enabled = button_save.Enabled = true;
+                return;
+            }
+
+            var server = (ServerInfo)comboBox1.SelectedItem;
+
+            IMonkeyService _monkeyService = new MonkeyService(server);
+           
             try
             {
                 var user = _monkeyService.GetUserInfo(token);
@@ -67,6 +75,12 @@ namespace OnetcMonkeyComputer.Forms.Setting
 
                 config.Token = token;
                 config.Wallet = user.otc;
+
+             
+                config.BaseApiUrl = server.BaseApiUrl;
+                config.BaseUrl = server.BaseUrl;
+                config.ServerName = server.Name;
+                config.ServerTag = server.ServerTag;
                 _configService.Save(config);
 
                 var hnbc_token = _appService.Login(user.otc, user.nickName);
@@ -97,11 +111,25 @@ namespace OnetcMonkeyComputer.Forms.Setting
         }
 
         private void SettingForm_Load(object sender, EventArgs e)
-        {
-            IConfigService _configService = new ConfigService();
+        { 
             var config = _configService.ReadConfig();
             textBox_token.Text = config.Token;
+            
+            List<ServerInfo> servers = _configService.ReadMonkeyServers();
+
+            comboBox1.DataSource = servers;
+            comboBox1.DisplayMember = "Name";
+
+
+            var server = servers.Where(w=>w.Name == config.ServerName).FirstOrDefault();
+            var index = servers.IndexOf(server);
+            if(index>=0)
+            {
+                comboBox1.SelectedIndex = index;
+            }
+
         }
+
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -110,6 +138,15 @@ namespace OnetcMonkeyComputer.Forms.Setting
                 Process.Start("http://www.onetc.info/wkmonkey/hai-na-bai-chuan-wan-ke-hou-fu-zhu-gong-ju-3-0-fa-bu-");
             } catch  
             { }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var servers = _appService.GetServerList();
+            _configService.SaveMonkeyServers(servers);
+             
+            comboBox1.DataSource = servers;
+            comboBox1.DisplayMember = "Name";
         }
     }
 }

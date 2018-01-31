@@ -27,12 +27,14 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
         private bool ForseStopFeed=false;
 
         private List<MyMonkey4FeedDto> monkeys = new List<MyMonkey4FeedDto>();
-        
+
+        private string token = "";
         public AutoFeedForm()
         {
             InitializeComponent();
             _configService = new ConfigService();
-            _monkeyService = new MonkeyService();
+           var config = _configService.ReadConfig();
+            _monkeyService = new MonkeyService(config.BaseApiUrl, config.BaseUrl);
         }
 
         private void AutoFeedForm_Load(object sender, EventArgs e)
@@ -42,10 +44,12 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
 
             LoadMonkey();
 
+            monkeys.ForEach(f=>f.SetJueJinFenShu());
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = monkeys;
 
             label_count.Text = $"共 {monkeys.Count} 只";
+            RefreshBackColor();
             tabControl1.SizeMode = TabSizeMode.Fixed;
             tabControl1.ItemSize = new Size(0, 1);
         }
@@ -54,7 +58,7 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
         {
             if (page == 1)
                 monkeys = new List<MyMonkey4FeedDto>();
-            var token = _configService.ReadConfig()?.Token;
+            token = _configService.ReadConfig()?.Token;
             try
             {
                 var requestMonkeys = _monkeyService.GetMyMonkeys(token, page);
@@ -94,10 +98,8 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
 
             if (ffaf.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                monkey.FeedList = ffaf.list;//获取弹出窗体的属性值
-
+                monkey.FeedList = ffaf.list;//获取弹出窗体的属性值               
                 monkey.Des = ffaf.FangAn;
-
             }
 
             dataGridView1.Refresh();
@@ -106,6 +108,9 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
 
         private void RefreshBackColor()
         {
+            var feedmonkeys = monkeys.Where(w => w.FeedList != null && w.FeedList.Count > 0).ToList() ;
+            label22.Text = $"当前已配置{feedmonkeys.Count}只猴子自动喂养，总计需要{feedmonkeys.Sum(s=>s.FeedList.Sum())}wkc，预计总掘金分：{feedmonkeys.Sum(s=>s.JueJinFenShu)}";
+
             for (int i = 0; i < monkeys.Count; i++)
             {
                 if (monkeys[i].IsAuto)
@@ -113,6 +118,7 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
                 else
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.White;
             }
+
         }
 
         private void button_start_Click(object sender, EventArgs e)
@@ -122,7 +128,7 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
                 ForseStopFeed = false;
                 Thread recvThread = new Thread(new ParameterizedThreadStart(FeedMonkey));
                 recvThread.SetApartmentState(ApartmentState.STA);
-                recvThread.Start(new FeedMonkeyInput { monkeys = monkeys, wallet = textBox_feedwallet.Text, pwd = textBox_pwd.Text });
+                recvThread.Start(new FeedMonkeyInput { token = token,monkeys = monkeys});
                 
                 //ThreadPool.QueueUserWorkItem(FeedMonkey, new FeedMonkeyInput { monkeys = monkeys, wallet = textBox_feedwallet.Text, pwd = textBox_pwd.Text });
                 //this.Invoke(new Delegate_FeedMonkeys(FeedMonkey),monkeys,textBox_feedwallet.Text,textBox_pwd.Text);          
@@ -144,13 +150,17 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
                 {
                     _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--开始喂养猴子#{m.Id}");
 
-                    FeedOne(m, input.wallet, input.pwd);
+                    Thread.Sleep(3000);
+                    FeedOne(input.token,m);
                     if (ForseStopFeed)
                     {
                         _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--已停止喂养");
                         MessageBox.Show("已停止！");
                         return;
                     }
+
+                   
+
                 }
                 _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--全部完成");
                 MessageBox.Show("已完成！");
@@ -161,7 +171,7 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
             }
         }
 
-        private void FeedOne(MyMonkey4FeedDto m, string wallet, string pwd)
+        private void FeedOne(string token,MyMonkey4FeedDto m)
         {
             int i = 1;
             foreach (var c in m.FeedList)
@@ -173,8 +183,11 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
                 }
 
                 _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--正在第{i}次喂养猴子#{m.Id},投食{c} wkc");
-                AutoFeedHelper.FeedOneTime(wallet, c, pwd);
+                var result =_monkeyService.BalanceFeed(token,m.Id,c);
+                //AutoFeedHelper.FeedOneTime(wallet, c, pwd);
                 _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--第{i}次喂养猴子#{m.Id},投食{c} wkc 完成");
+                _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--成长增加：{result.addGrow},生育增加：{result.addBear}，掘金增加：{result.addMoney}");
+                _syncContext.Post(Notify, $"{DateTime.Now.ToString("HH:mm:ss")}--hash:{result.hash}");
                 i++;
             }
         }
@@ -184,6 +197,7 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
             if (MessageBox.Show("重新加载将重置所有已配置的自动喂食方案", "确认重置？", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 LoadMonkey();
+                RefreshBackColor();
                 label_count.Text = $"共 {monkeys.Count} 只";
                 dataGridView1.AutoGenerateColumns = false;
                 dataGridView1.DataSource = monkeys;
@@ -249,15 +263,12 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
         {
             tabControl1.SelectedTab = tabPage1;
         }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            button_start.Enabled = checkBox1.Checked;
-        }
+         
 
         private void button_return_Click(object sender, EventArgs e)
         {
             LoadMonkey();
+            RefreshBackColor();
             label_count.Text = $"共 {monkeys.Count} 只";
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = monkeys;
@@ -265,16 +276,7 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
             tabControl1.SelectedTab = tabPage1;
         }
 
-        private void button_dashang_Click(object sender, EventArgs e)
-        {
-            double dashang = (double)numericUpDown1.Value;
-            var pwd = textBox_pwd.Text;
-            if (MessageBox.Show($"为确认你并非误操作，请再次确认，你要向软件作者打赏{dashang}链克吗？", "二次确认", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            {
-                AutoFeedHelper.FeedOneTime("0x365cc7e1ee13579558ec18e4af13233bd91538df", dashang, pwd);
-                //delete
-            }          
-        }
+        
 
         private void button_step3_pre_Click(object sender, EventArgs e)
         {
@@ -289,8 +291,9 @@ namespace OnetcMonkeyComputer.Forms.AutoFeed
 
     public class FeedMonkeyInput
     {
-        public List<MyMonkey4FeedDto> monkeys { get; set; }
-        public string wallet { get; set; }
-        public string pwd { get; set; }
+        public List<MyMonkey4FeedDto> monkeys { get; set; } 
+
+        public string token { get; set; }
+
     }
 }

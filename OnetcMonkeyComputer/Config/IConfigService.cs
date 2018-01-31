@@ -19,5 +19,8 @@ namespace OnetcMonkeyComputer.Config
 
         UserConfig GetUserConfig();
 
+        List<ServerInfo> ReadMonkeyServers();
+
+        void SaveMonkeyServers(List<ServerInfo> servers);
     }
 }

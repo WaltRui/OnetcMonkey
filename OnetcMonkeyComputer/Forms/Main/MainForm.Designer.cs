@@ -60,6 +60,8 @@
             this.意见反馈ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.检查更新ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.捐助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -202,15 +204,17 @@
             // 
             // 自动喂食ToolStripMenuItem
             // 
+            this.自动喂食ToolStripMenuItem.Enabled = false;
             this.自动喂食ToolStripMenuItem.Name = "自动喂食ToolStripMenuItem";
-            this.自动喂食ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.自动喂食ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.自动喂食ToolStripMenuItem.Text = "自动喂食";
             this.自动喂食ToolStripMenuItem.Click += new System.EventHandler(this.自动喂食ToolStripMenuItem_Click);
             // 
             // 自动修炼ToolStripMenuItem
             // 
+            this.自动修炼ToolStripMenuItem.Enabled = false;
             this.自动修炼ToolStripMenuItem.Name = "自动修炼ToolStripMenuItem";
-            this.自动修炼ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.自动修炼ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.自动修炼ToolStripMenuItem.Text = "自动修炼";
             this.自动修炼ToolStripMenuItem.Click += new System.EventHandler(this.自动修炼ToolStripMenuItem_Click);
             // 
@@ -227,19 +231,19 @@
             // 热度排行榜ToolStripMenuItem
             // 
             this.热度排行榜ToolStripMenuItem.Name = "热度排行榜ToolStripMenuItem";
-            this.热度排行榜ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.热度排行榜ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.热度排行榜ToolStripMenuItem.Text = "热度排行榜";
             this.热度排行榜ToolStripMenuItem.Click += new System.EventHandler(this.热度排行榜ToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(133, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
             // 
             // 掘金值排行ToolStripMenuItem
             // 
             this.掘金值排行ToolStripMenuItem.Name = "掘金值排行ToolStripMenuItem";
-            this.掘金值排行ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.掘金值排行ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.掘金值排行ToolStripMenuItem.Text = "掘金值排行";
             this.掘金值排行ToolStripMenuItem.Click += new System.EventHandler(this.掘金值排行ToolStripMenuItem_Click);
             // 
@@ -253,6 +257,8 @@
             this.意见反馈ToolStripMenuItem,
             this.toolStripSeparator8,
             this.设置ToolStripMenuItem,
+            this.toolStripSeparator11,
+            this.检查更新ToolStripMenuItem,
             this.toolStripSeparator9,
             this.关于ToolStripMenuItem});
             this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
@@ -301,6 +307,18 @@
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.设置ToolStripMenuItem.Text = "设置";
             this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(121, 6);
+            // 
+            // 检查更新ToolStripMenuItem
+            // 
+            this.检查更新ToolStripMenuItem.Name = "检查更新ToolStripMenuItem";
+            this.检查更新ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.检查更新ToolStripMenuItem.Text = "检查更新";
+            this.检查更新ToolStripMenuItem.Click += new System.EventHandler(this.检查更新ToolStripMenuItem_Click);
             // 
             // toolStripSeparator9
             // 
@@ -387,5 +405,7 @@
         private System.Windows.Forms.ToolStripMenuItem 工具ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 自动喂食ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 自动修炼ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripMenuItem 检查更新ToolStripMenuItem;
     }
 }

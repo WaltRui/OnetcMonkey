@@ -53,7 +53,7 @@
             this.button_get_detail = new System.Windows.Forms.Button();
             this.webKitBrowser_radar = new WebKit.WebKitBrowser();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.webKitBrowser1 = new WebKit.WebKitBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_monkeyId)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -301,10 +301,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.webKitBrowser1);
             this.groupBox2.Controls.Add(this.webKitBrowser_radar);
             this.groupBox2.Controls.Add(this.button_get_detail);
             this.groupBox2.Controls.Add(this.tabControl1);
-            this.groupBox2.Controls.Add(this.webBrowser1);
             this.groupBox2.Controls.Add(this.label_makemoney);
             this.groupBox2.Controls.Add(this.label_bear);
             this.groupBox2.Controls.Add(this.label_grow);
@@ -318,13 +318,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "猴";
             // 
-            // webBrowser1
+            // webKitBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(12, 51);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(195, 206);
-            this.webBrowser1.TabIndex = 25;
+            this.webKitBrowser1.BackColor = System.Drawing.SystemColors.Control;
+            this.webKitBrowser1.Location = new System.Drawing.Point(12, 51);
+            this.webKitBrowser1.Name = "webKitBrowser1";
+            this.webKitBrowser1.Size = new System.Drawing.Size(195, 206);
+            this.webKitBrowser1.TabIndex = 33;
+            this.webKitBrowser1.Url = null;
             // 
             // MonkeyDetailForm
             // 
@@ -374,7 +375,7 @@
         private System.Windows.Forms.TabPage tabPage_coin_chart;
         private System.Windows.Forms.TabPage tabPage3;
         private ZedGraph.ZedGraphControl zedGraphControl_coin;
-        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private WebKit.WebKitBrowser webKitBrowser1;
     }
 }

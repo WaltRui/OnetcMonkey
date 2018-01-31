@@ -24,11 +24,14 @@ namespace OnetcMonkeyComputer.Forms.HomePage
         private IHnbcService _hnbcService;
         private IConfigService _configService;
         private OverViewDataDto newestData;
+        AppConfig config = null;
         public HomePageForm()
         {
             InitializeComponent();
-            _hnbcService = new HnbcService();
             _configService = new ConfigService();
+            config = _configService.ReadConfig();
+            label_server.Text ="服务器："+((config.ServerName??"").Length<=0?"创世服":config.ServerName);
+            _hnbcService = new HnbcService(config.ServerTag);
         }
 
         private void HomePageForm_Load(object sender, EventArgs e)
@@ -61,7 +64,7 @@ namespace OnetcMonkeyComputer.Forms.HomePage
             var bear = (int)newestData.Bear <= 0 ? "" : $"bear={ (int)(newestData.Bear * newestData.BearPara)}&";
             var feed = (int)newestData.Feed <= 0 ? "" : $"feed={(int)(newestData.Feed * newestData.FeedPara)}&";
             var game = (int)newestData.Game <= 0 ? "" : $"game={((int)(newestData.Game * newestData.GamePara))}&";
-            var sale = (int)newestData.Sale <= 0 ? "" : $"sale={(int)(newestData.Sale * newestData.SalePara)}";
+            var sale = (int)newestData.Sale <= 0 ? "" : $"sale={(int)(newestData.Sale * newestData.SalePara)}&";
             var other = (int)newestData.Other <= 0 ? "" : $"other={(int)(newestData.Other * newestData.OtherPara)}";
 
             var pieUrl = $"http://h.app.hnbc.info/charts/makemoney_pie.html?{trad}{bear}{feed}{game}{sale}{other}";
@@ -76,7 +79,9 @@ namespace OnetcMonkeyComputer.Forms.HomePage
         {
             var overviewData = _configService.ReadOverViewData();
 
-            newestData = overviewData.OrderByDescending(o => o.Date)
+            newestData = overviewData
+                .Where(w => w.ServerTag == config.ServerTag)
+                .OrderByDescending(o => o.Date)                
                 .FirstOrDefault();
             var day = newestData?.Date;
             var yesterday = DateTime.Now.AddDays(-1).ToString("yyyyMMdd");

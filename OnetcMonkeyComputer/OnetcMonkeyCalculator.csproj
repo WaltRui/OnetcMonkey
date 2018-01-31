@@ -93,6 +93,7 @@
     <Compile Include="AppServices\Dtos\LoginResult.cs" />
     <Compile Include="AppServices\IAppService.cs" />
     <Compile Include="Config\AppInfo.cs" />
+    <Compile Include="Config\ServerInfo.cs" />
     <Compile Include="Config\UserConfig.cs" />
     <Compile Include="Forms\About\AboutForm.cs">
       <SubType>Form</SubType>
@@ -162,6 +163,12 @@
     <Compile Include="Config\ConfigService.cs" />
     <Compile Include="Config\IConfigService.cs" />
     <Compile Include="Eggs\AvatarEggs.cs" />
+    <Compile Include="Forms\Calculators\PanTaoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Calculators\PanTaoForm.Designer.cs">
+      <DependentUpon>PanTaoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Donate\DonateForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,7 +218,9 @@
     <Compile Include="Forms\Search\SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\Dtos\BalanceFeedResult.cs" />
     <Compile Include="Services\Dtos\FeedPageDto.cs" />
+    <Compile Include="Services\Dtos\FilterMonkeysFromMarketInput.cs" />
     <Compile Include="Services\Dtos\MakeMoneyPageDto.cs" />
     <Compile Include="Services\Dtos\MiguanUserInfoDto.cs" />
     <Compile Include="Services\Dtos\MonkeyInfoDto.cs" />
@@ -263,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Calculators\JueJinCalculatorForm.resx">
       <DependentUpon>JueJinCalculatorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Calculators\PanTaoForm.resx">
+      <DependentUpon>PanTaoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Donate\DonateForm.resx">
       <DependentUpon>DonateForm.cs</DependentUpon>

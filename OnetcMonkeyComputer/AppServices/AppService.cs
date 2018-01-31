@@ -15,7 +15,7 @@ namespace OnetcMonkeyComputer.AppServices
     {
         private string appinfoUrl = $"http://api.app.hnbc.info/v1/app/detail?name={AppInfo.AppName}";
         private string loginUrl = "http://api.app.hnbc.info/v1/apps/wcmonkey/auth/login";
-
+        private string getserversUrl = $"http://api.app.hnbc.info/v1/apps/wcmonkey/servers";
         public AppInfoDto GetAppInfo()
         {
             string result = string.Empty;
@@ -32,6 +32,27 @@ namespace OnetcMonkeyComputer.AppServices
                 }
             }
             HnbcResponseDto<AppInfoDto> output = JsonHelper.JsonToObject<HnbcResponseDto<AppInfoDto>>(result);
+            if (!output.Success)
+                throw new Exception(output.Error);
+            return output.Result;
+        }
+
+        public List<ServerInfo> GetServerList()
+        {
+            string result = string.Empty;
+            string url = getserversUrl;
+            HttpWebRequest wbRequest = (HttpWebRequest)WebRequest.Create(url);
+            wbRequest.Method = "GET";
+
+            HttpWebResponse wbResponse = (HttpWebResponse)wbRequest.GetResponse();
+            using (Stream responseStream = wbResponse.GetResponseStream())
+            {
+                using (StreamReader sReader = new StreamReader(responseStream))
+                {
+                    result = sReader.ReadToEnd();
+                }
+            }
+            HnbcResponseDto<List<ServerInfo>> output = JsonHelper.JsonToObject<HnbcResponseDto<List<ServerInfo>>>(result);
             if (!output.Success)
                 throw new Exception(output.Error);
             return output.Result;

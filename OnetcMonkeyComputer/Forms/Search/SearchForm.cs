@@ -22,8 +22,9 @@ namespace OnetcMonkeyComputer
         public Search()
         {
             InitializeComponent();
-            _monkeyService = new MonkeyService();
             _configService = new ConfigService();
+            var config = _configService.ReadConfig();
+            _monkeyService = new MonkeyService(config.BaseApiUrl, config.BaseUrl);
 
             this.dataGridView_monkeys.AutoGenerateColumns = false;
         }
@@ -31,15 +32,40 @@ namespace OnetcMonkeyComputer
         private void button_search_Click(object sender, EventArgs e)
         {
             var token = _configService.ReadConfig().Token;
-            var generation = (int)numericUpDown_generation.Value;
             var pages = comboBox_pages.SelectedIndex > 0 ? comboBox_pages.SelectedIndex + 1 : 1;
             var orderby = comboBox_orderby.SelectedIndex+1;
             var sort = checkBox_sort.Checked?1:0;
 
+            var input = new FilterMonkeysFromMarketInput()
+            {
+                token = token,
+                sort = sort,
+                orderBy = orderby,
+                startBear = (double)numericUpDown_bearStart.Value,
+                endBear= (double)numericUpDown_bearEnd.Value,
+
+                startBearNum = (int)numericUpDown_bearNumStart.Value,
+                endBearNum = (int)numericUpDown_bearNumEnd.Value,
+
+                startGen = (int)numericUpDown_genStart.Value,
+                endGen = (int)numericUpDown_genEnd.Value,
+
+                startGrow = (double)numericUpDown_growStart.Value,
+                endGrow = (double)numericUpDown_growEnd.Value,
+
+                startMakeMoney = (double)numericUpDown_makeMoneyStart.Value,
+                endMakeMoney = (double)numericUpDown_makeMoneyEnd.Value,
+
+                startWeight = (double)numericUpDown_weightStart.Value,
+                endWeight = (double)numericUpDown_weightEnd.Value
+                
+            };
+
             list = new List<MonkeyInfoDto>();
             for (int i=1;i<= pages; i++)
             {
-                list.AddRange(_monkeyService.GetMonkeysFromMarket(token, i, generation, orderby:orderby,sort:sort));
+                input.current = i;
+                list.AddRange(_monkeyService.FilterMonkeysFromMarket(input));
             }            
 
             list.ForEach(f => f.SetJueJinFenShu());
@@ -62,6 +88,12 @@ namespace OnetcMonkeyComputer
                     list = list.OrderBy(o => o.JueJinFenShu).ToList();
                     switch (columnName)
                     {
+                        case "generation":
+                            if (so == SortOrder.Ascending)
+                                list = list.OrderBy(o => o.generation).ToList();
+                            else
+                                list = list.OrderByDescending(o => o.generation).ToList();
+                            break;
                         case "price":
                             if (so == SortOrder.Ascending)
                                 list = list.OrderBy(o => o.price).ToList();
