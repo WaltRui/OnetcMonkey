@@ -3,6 +3,13 @@
 
 软件网址：http://www.onetc.info/wkmonkey/ruan-jian-yi-jing-kai-yuan-huan-ying-start 
 
+## 更新日志：
+### 2018年1月31日21:36:21
+1. 国际服支持
+2. 新域名启用
+3. 最新版本更新至 4.0
+4. 因一直没来得及整理代码，代码比较混乱，一直没好意思提交。正赶上最近工作较忙，所以还是先提交一次吧，过了年在重构。
+
 ## 软件界面如下：
 ![snipaste_20180107_011310.jpg](http://p2.cdn.img9.top/ipfs/QmaSKHh7SCt6TaLcxinJ3Q1174Cg8z3FV3qmgwatJSf5sg?2.jpg "snipaste_20180107_011310.jpg")
 
