@@ -11,7 +11,7 @@
 4. 因一直没来得及整理代码，代码比较混乱，一直没好意思提交。正赶上最近工作较忙，所以还是先提交一次吧，过了年在重构。
 
 ## 软件界面如下：
-![snipaste_20180107_011310.jpg](http://p2.cdn.img9.top/ipfs/QmaSKHh7SCt6TaLcxinJ3Q1174Cg8z3FV3qmgwatJSf5sg?2.jpg "snipaste_20180107_011310.jpg")
+![main.png](https://github.com/WaltRui/OnetcMonkey/blob/master/docs/main.png "main.png")
 
 ### 其中属性计算器包含：
 1. 掘金计算器
