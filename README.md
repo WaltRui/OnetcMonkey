@@ -4,7 +4,12 @@
 软件网址：http://www.onetc.info/wkmonkey/ruan-jian-yi-jing-kai-yuan-huan-ying-start 
 
 ## 更新日志：
+### 玩客猴早已下线，故本软件已不可使用。
+
+
+
 ### 2018年1月31日21:36:21
+
 1. 国际服支持
 2. 新域名启用
 3. 最新版本更新至 4.0
