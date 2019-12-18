@@ -16,8 +16,7 @@
 4. 因一直没来得及整理代码，代码比较混乱，一直没好意思提交。正赶上最近工作较忙，所以还是先提交一次吧，过了年在重构。
 
 ## 软件界面如下：
-![main.png](https://github.com/WaltRui/OnetcMonkey/blob/master/docs/main.png "main.png")
-
+![main](docs/main.png)
 ### 其中属性计算器包含：
 1. 掘金计算器
 2. 生育计算器
